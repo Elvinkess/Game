@@ -4,7 +4,7 @@ import { IBaseDb } from "../../../usecase/interface/data_access/base_db";
 
 
 export class BaseDb<TEntity extends BaseEntity> implements IBaseDb<TEntity>{
-    private model: Repository<TEntity>
+    protected model: Repository<TEntity>
     
     constructor( myDataSource: DataSource, entity: EntityTarget<TEntity>){
         this.model = myDataSource.getRepository(entity)

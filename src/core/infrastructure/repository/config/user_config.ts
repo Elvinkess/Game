@@ -9,22 +9,10 @@ export class UserConfig extends BaseEntity  implements User {
     @Column()
     username!: string
 
-    @Column()
-    email!: string
-
-    @Column()
-    password!: string 
-
     @Column({ default: 0 })
     wins!:number
 
     @Column({ default: 0 })
     losses!:number
-
-    @Column()
-    reset_token?: string 
-
-    @Column()
-    token_expiration?: Date
 
 }

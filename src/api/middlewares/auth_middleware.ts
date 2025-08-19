@@ -1,9 +1,8 @@
 import { Request,Response,NextFunction } from "express";
-import { IUserLogic } from "../../core/usecase/interface/logic/user_logic";
 import { IAuthService } from "../../core/usecase/interface/services/auth_service";
 
 interface AuthRequest extends Request {
-    user?: {name: string; email: string,id:number}
+    user?: {username: string,id:number}
 }
 
 
@@ -18,7 +17,8 @@ export class AuthMiddleware{
     
       try {
         const decoded = this.auth.decodedjwt(token);
-        req.user = decoded;
+        console.log({decoded})
+        res.locals.user= decoded
          console.log(req.user)
         next();
       } catch (err) {

@@ -15,8 +15,6 @@ class UserController {
         this.userLogic = userLogic;
         this.create = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(req.body);
-                console.log(req.body.name);
                 let user = yield this.userLogic.create(req.body);
                 res.json(user);
             }
@@ -26,7 +24,6 @@ class UserController {
         });
         this.signin = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(req.body);
                 let user = yield this.userLogic.signInUser(req.body);
                 res.json(user);
             }
@@ -34,23 +31,20 @@ class UserController {
                 res.json({ error: err.message });
             }
         });
-        this.resetPassword = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        this.topUsers = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(req.body);
-                let resetRes = yield this.userLogic.resetpassword(req.body);
-                res.json(resetRes);
+                let users = yield this.userLogic.topPlayers();
+                res.json(users);
             }
             catch (err) {
                 res.json({ error: err.message });
             }
         });
-        this.verifyAndResetPassowrd = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        this.loadUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let token = req.query.token;
-                console.log(token);
-                console.log(req.body);
-                let reset = yield this.userLogic.verifytoken(token, req.body);
-                res.json(reset);
+                let userPayload = res.locals.user;
+                let users = yield this.userLogic.loadUser(userPayload.id);
+                res.json(users);
             }
             catch (err) {
                 res.json({ error: err.message });

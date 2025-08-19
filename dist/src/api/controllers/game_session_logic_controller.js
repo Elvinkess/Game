@@ -9,27 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthMiddleware = void 0;
-class AuthMiddleware {
-    constructor(auth) {
-        this.auth = auth;
-        this.authenticateJWT = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            var _a;
-            let token = (_a = req.header("Authorization")) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
-            if (!token) {
-                return res.status(401).json({ message: "Access token is missing" });
-            }
+exports.gameSessionController = void 0;
+class gameSessionController {
+    constructor(gameSessionLogic) {
+        this.gameSessionLogic = gameSessionLogic;
+        this.removePlayer = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const decoded = this.auth.decodedjwt(token);
-                console.log({ decoded });
-                res.locals.user = decoded;
-                console.log(req.user);
-                next();
+                console.log("Im reachable ----------------------");
+                const { userId, sessionId } = req.body;
+                let user = yield this.gameSessionLogic.removePlayer(userId, sessionId);
+                res.json(user);
             }
             catch (err) {
-                res.status(403).json({ message: "Invalid token" });
+                console.log(err);
+                res.json({ error: err.message });
             }
         });
     }
 }
-exports.AuthMiddleware = AuthMiddleware;
+exports.gameSessionController = gameSessionController;

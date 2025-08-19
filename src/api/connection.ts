@@ -2,6 +2,8 @@ import { DataSource } from "typeorm"
 import 'reflect-metadata';
 import dotenv from 'dotenv';
 import { UserConfig } from "../core/infrastructure/repository/config/user_config";
+import { SessionPlayerConfig } from "../core/infrastructure/repository/config/game_player";
+import { GameSessionConfig } from "../core/infrastructure/repository/config/game_session";
 
 
 dotenv.config();
@@ -12,8 +14,8 @@ const AppDataSource = new DataSource({
     port: 5432,
     username: "postgres",
     password:process.env.PASSWORD,
-    database: "vent_services",
-    entities: [UserConfig],
+    database: "Game",
+    entities: [UserConfig,SessionPlayerConfig,GameSessionConfig],
     synchronize: false,
     logging: false,
     // ssl: {

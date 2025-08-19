@@ -21,23 +21,15 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], UserConfig.prototype, "name", void 0);
+], UserConfig.prototype, "username", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], UserConfig.prototype, "email", void 0);
+    (0, typeorm_1.Column)({ default: 0 }),
+    __metadata("design:type", Number)
+], UserConfig.prototype, "wins", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], UserConfig.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], UserConfig.prototype, "reset_token", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Date)
-], UserConfig.prototype, "token_expiration", void 0);
+    (0, typeorm_1.Column)({ default: 0 }),
+    __metadata("design:type", Number)
+], UserConfig.prototype, "losses", void 0);
 exports.UserConfig = UserConfig = __decorate([
     (0, typeorm_1.Entity)("users")
 ], UserConfig);

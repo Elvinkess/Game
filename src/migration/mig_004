@@ -1,0 +1,9 @@
+ALTER TABLE game_player
+ADD COLUMN status VARCHAR NOT NULL DEFAULT 'ACTIVE';
+
+ALTER TABLE game_player
+ADD COLUMN "socketId" VARCHAR;
+
+
+
+

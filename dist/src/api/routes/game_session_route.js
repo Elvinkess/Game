@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const index_1 = require("../../../index");
+const game_session_logic_controller_1 = require("../controllers/game_session_logic_controller");
+index_1.gameSessionLogic;
+let gameRoute = (0, express_1.Router)();
+let gameController = new game_session_logic_controller_1.gameSessionController(index_1.gameSessionLogic);
+gameRoute.post("/remove-player", gameController.removePlayer);
+exports.default = gameRoute;

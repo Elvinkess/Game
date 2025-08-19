@@ -4,7 +4,7 @@ import { baseEntity } from "./base_entity";
 export class GameSession extends baseEntity {
   constructor(
     public status: SessionStatus,
-    public capacity: number,
+    public maxPlayers: number,
     public createdAt: Date,
     public startedAt: Date | null = null,
     public endsAt: Date | null = null,
