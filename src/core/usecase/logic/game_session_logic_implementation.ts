@@ -207,7 +207,7 @@ export class GameSessionLogic implements  IGameSessionLogic {
     
             if (remaining <= 0) {
                 clearInterval(interval); // stop countdown
-                this.closeSession(session.id, 1/*Math.floor(Math.random() * 9) + 1*/)
+                this.closeSession(session.id, Math.floor(Math.random() * 9) + 1)
                 .catch(err => console.error("Error closing session:", err));
                 return;
             }
