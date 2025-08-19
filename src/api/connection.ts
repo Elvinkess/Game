@@ -9,19 +9,19 @@ import { GameSessionConfig } from "../core/infrastructure/repository/config/game
 dotenv.config();
 const AppDataSource = new DataSource({
     type: "postgres",
-    //url: process.env.DATABASE_URL,  Required for hosted DBs like Render or Supabase
-    host: "localhost",
+    host: "dpg-d2i9uo3e5dus73ek9c8g-a.oregon-postgres.render.com",
     port: 5432,
-    username: "postgres",
-    password:process.env.PASSWORD,
-    database: "Game",
-    entities: [UserConfig,SessionPlayerConfig,GameSessionConfig],
+    username: "gamedb_4x5c_user",
+    password: process.env.PASSWORD,
+    database: "gamedb_4x5c",
+    entities: [UserConfig, SessionPlayerConfig, GameSessionConfig],
     synchronize: false,
     logging: false,
-    // ssl: {
-    //     rejectUnauthorized: false, // Required for hosted DBs like Render or Supabase
-    // }
-})
+    ssl: {
+      rejectUnauthorized: false, // Required for Render
+    },
+  });
+
 
 AppDataSource.initialize()
     .then(() => {

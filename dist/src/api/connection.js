@@ -12,18 +12,17 @@ const game_session_1 = require("../core/infrastructure/repository/config/game_se
 dotenv_1.default.config();
 const AppDataSource = new typeorm_1.DataSource({
     type: "postgres",
-    //url: process.env.DATABASE_URL,  Required for hosted DBs like Render or Supabase
-    host: "localhost",
+    host: "dpg-d2i9uo3e5dus73ek9c8g-a.oregon-postgres.render.com",
     port: 5432,
-    username: "postgres",
+    username: "gamedb_4x5c_user",
     password: process.env.PASSWORD,
-    database: "Game",
+    database: "gamedb_4x5c",
     entities: [user_config_1.UserConfig, game_player_1.SessionPlayerConfig, game_session_1.GameSessionConfig],
     synchronize: false,
     logging: false,
-    // ssl: {
-    //     rejectUnauthorized: false, // Required for hosted DBs like Render or Supabase
-    // }
+    ssl: {
+        rejectUnauthorized: false, // Required for Render
+    },
 });
 AppDataSource.initialize()
     .then(() => {

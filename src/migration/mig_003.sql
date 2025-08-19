@@ -5,5 +5,5 @@ CREATE TABLE game_player (
   pickedNumber INT NOT NULL,
   isOwner BOOLEAN NOT NULL DEFAULT false,
   isWinner BOOLEAN NOT NULL DEFAULT false,
-  joinedAt TIMESTAMP NOT NULL DEFAULT now(),
-);
+  joinedAt TIMESTAMP NOT NULL DEFAULT now()
+)
