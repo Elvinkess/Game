@@ -27,7 +27,6 @@ class GameSessionLogic {
         this.joinSession = (userId, pickedNumber, socketId) => __awaiter(this, void 0, void 0, function* () {
             var _a;
             try {
-                console.log(`${userId} picked number ${pickedNumber}`);
                 const user = yield this.userDb.getOne({ id: userId });
                 if (!user)
                     throw new Error("User does not exist");
@@ -115,7 +114,6 @@ class GameSessionLogic {
                 }
                 yield this.playerDb.update({ id: player.id }, { status: session_players_1.PlayerInSessionStatus.LEFTGAME }); //if yes;set user status to left game
                 let newPlayer = yield this.playerDb.getOne({ sessionId: sessionId, status: session_players_1.PlayerInSessionStatus.WAITINGROOM }); //get the first person with a status of in waiting room and session id
-                console.log({ session, userId, player, sessionId });
                 if (newPlayer) {
                     yield this.playerDb.update({ id: newPlayer.id }, { status: session_players_1.PlayerInSessionStatus.ACTIVE });
                     let user = yield this.userDb.getOne({ id: newPlayer.userId });
@@ -181,7 +179,6 @@ class GameSessionLogic {
                 players: sessionPlayers
             };
             yield this.gameSessionDb.update({ id: sessionId }, { status: game_session_1.SessionStatus.CLOSED });
-            console.log(payload, "onclose payload");
             // Emit event to frontend, the show the result of the game along with players/participients
             this.io.emit("session:closed", payload);
         });

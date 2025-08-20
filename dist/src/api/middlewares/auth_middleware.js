@@ -21,9 +21,7 @@ class AuthMiddleware {
             }
             try {
                 const decoded = this.auth.decodedjwt(token);
-                console.log({ decoded });
                 res.locals.user = decoded;
-                console.log(req.user);
                 next();
             }
             catch (err) {

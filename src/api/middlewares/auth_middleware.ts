@@ -17,9 +17,7 @@ export class AuthMiddleware{
     
       try {
         const decoded = this.auth.decodedjwt(token);
-        console.log({decoded})
         res.locals.user= decoded
-         console.log(req.user)
         next();
       } catch (err) {
         res.status(403).json({ message: "Invalid token" });

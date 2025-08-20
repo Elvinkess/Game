@@ -14,7 +14,6 @@ export class GameSessionLogic implements  IGameSessionLogic {
     
     joinSession = async(userId: number, pickedNumber: number, socketId?: string): Promise<SessionPlayer> => {
         try {
-            console.log(`${userId} picked number ${pickedNumber}`);
     
             const user = await this.userDb.getOne({ id: userId });
             if (!user) throw new Error("User does not exist");
@@ -108,7 +107,6 @@ export class GameSessionLogic implements  IGameSessionLogic {
             if(!player){throw new Error("Your are not an active player in this session")}
             await this.playerDb.update({id:player.id},{status:PlayerInSessionStatus.LEFTGAME})  //if yes;set user status to left game
             let newPlayer = await this.playerDb.getOne({sessionId:sessionId,status:PlayerInSessionStatus.WAITINGROOM})//get the first person with a status of in waiting room and session id
-            console.log({session,userId,player,sessionId})
             if(newPlayer){
                 await this.playerDb.update({id:newPlayer.id},{status:PlayerInSessionStatus.ACTIVE})
                 let user= await this.userDb.getOne({id:newPlayer.userId})
@@ -190,7 +188,6 @@ export class GameSessionLogic implements  IGameSessionLogic {
           players:sessionPlayers
         };
         await this.gameSessionDb.update({id:sessionId},{status:SessionStatus.CLOSED})
-        console.log(payload,"onclose payload");
       
         // Emit event to frontend, the show the result of the game along with players/participients
         this.io.emit("session:closed", payload);
