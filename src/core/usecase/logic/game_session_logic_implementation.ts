@@ -190,7 +190,7 @@ export class GameSessionLogic implements  IGameSessionLogic {
           players:sessionPlayers
         };
         await this.gameSessionDb.update({id:sessionId},{status:SessionStatus.CLOSED})
-        console.log(payload);
+        console.log(payload,"onclose payload");
       
         // Emit event to frontend, the show the result of the game along with players/participients
         this.io.emit("session:closed", payload);

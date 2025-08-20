@@ -181,7 +181,7 @@ class GameSessionLogic {
                 players: sessionPlayers
             };
             yield this.gameSessionDb.update({ id: sessionId }, { status: game_session_1.SessionStatus.CLOSED });
-            console.log(payload);
+            console.log(payload, "onclose payload");
             // Emit event to frontend, the show the result of the game along with players/participients
             this.io.emit("session:closed", payload);
         });
@@ -194,7 +194,7 @@ class GameSessionLogic {
                 remaining = session.endsAt.getTime() - Date.now();
                 if (remaining <= 0) {
                     clearInterval(interval); // stop countdown
-                    this.closeSession(session.id, 1 /*Math.floor(Math.random() * 9) + 1*/)
+                    this.closeSession(session.id, Math.floor(Math.random() * 9) + 1)
                         .catch(err => console.error("Error closing session:", err));
                     return;
                 }

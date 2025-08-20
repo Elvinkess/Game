@@ -21,6 +21,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const user_route_1 = __importDefault(require("./src/api/routes/user_route"));
 const programs_1 = require("./src/api/programs");
 const game_session_logic_implementation_1 = require("./src/core/usecase/logic/game_session_logic_implementation");
+const session_players_route_1 = __importDefault(require("./src/api/routes/session_players_route"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
@@ -29,6 +30,7 @@ const port = process.env.PORT || 3000;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use("/user", user_route_1.default);
+app.use("/session_players", session_players_route_1.default);
 exports.gameSessionLogic = new game_session_logic_implementation_1.GameSessionLogic(programs_1.userDb, programs_1.gameSessionDb, programs_1.sessionPlayerDb, io);
 // Socket Entry Connection
 io.on("connection", (socket) => {

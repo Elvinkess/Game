@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import userRoute from "./src/api/routes/user_route";
 import { gameSessionDb, sessionPlayerDb, userDb } from "./src/api/programs";
 import { GameSessionLogic } from "./src/core/usecase/logic/game_session_logic_implementation";
+import sessionPlayersRoute from "./src/api/routes/session_players_route";
 dotenv.config();
 
 
@@ -20,6 +21,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 app.use("/user", userRoute)
+app.use("/session_players",sessionPlayersRoute)
 
 export const gameSessionLogic = new GameSessionLogic(userDb, gameSessionDb, sessionPlayerDb, io);
 // Socket Entry Connection
