@@ -54,5 +54,5 @@ Players must authenticate using **JWT** before joining a session.
 
 ### 1. Clone the repo:  
 ```bash
-git clone https://github.com/Elvinkess/Chat-App-Backend.git
-cd Chat-App-Backend
+git clone https://github.com/Elvinkess/Game.git
+cd Game
