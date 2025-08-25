@@ -21,6 +21,7 @@ Players must authenticate using **JWT** before joining a session.
 - **Frontend**: React (or any Socket.IO client)  
 - **Authentication**: JWT (JSON Web Tokens)  
 - **Communication**: WebSockets via Socket.IO  
+- **Database**: Postgres, typeORM  
 
 ---
 
