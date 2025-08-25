@@ -1,53 +1,57 @@
-# 🧱 Node.js Starter Template with PostgreSQL & User Auth
+# 🎲 Random Number Game  
 
-A clean and scalable Node.js starter template that provides the foundational building blocks for most backend applications. This boilerplate includes essential user functionalities like registration, login, password recovery, and JWT-based authentication. It uses PostgreSQL as the database and follows a modular folder structure for clean and maintainable code.
+A real-time multiplayer game built with **Socket.IO** where players join a session, pick a number between **1–9**, and the backend randomly selects the winning number. Whoever picked the correct number is declared the winner.  
+
+Players must authenticate using **JWT** before joining a session.  
+
+---
+
+## 🚀 Features  
+- 🔗 Real-time multiplayer gameplay with Socket.IO  
+- 🔐 Secure authentication with JWT  
+- 🕹 Players can join or leave sessions dynamically  
+- 🔢 Each player picks a number (1–9)  
+- 🎉 Winner is decided randomly by the server  
+- 📡 Events-driven architecture with Socket.IO  
+
+---
+
+## ⚙️ Tech Stack   
+- **Backend**: Node.js, Express, Socket.IO  
+- **Frontend**: React (or any Socket.IO client)  
+- **Authentication**: JWT (JSON Web Tokens)  
+- **Communication**: WebSockets via Socket.IO  
+
+---
+
+## 📌 Game Flow  
+1. User registers/login to get a JWT.  
+2. Client connects to the server with the JWT.  
+3. Server validates the token before allowing entry to the session.  
+4. Server emits `session:started` when a round begins.  
+5. Each authenticated player picks a number (1–9).  
+6. Server randomly generates a winning number.  
+7. If a player’s number matches, server emits `session:closed` with the winner.  
+8. Number of player per session is 10,but can be modify from the .env
+9. A user cannot join a session if its filled unless another player leaves, hence the first  player in the queue would join the session automatically.
+
+---
+
+## 🔑 Socket.IO Events  
+
+### **Server → Client**  
+- `session:started` → notifies all players a game has started. 
+- `session:closed` → sends the winning number and winner details. 
+- `queue:joined` → notifies when a queued player has been moved into the session. 
+- `session-countdown` → emit the coundown in real time till a session cleses.
+- `no-active-session` → emit when there is no active session for users to create one.
 
 
-## ✨ Features
-
-- 🔐 User authentication using JWT
-- 📝 User registration & login
-- 🧪 Credential validation:
-  - Valid email format
-  - Strong password policy (min length, complexity, etc.)
-  - Duplicate email check
-- 🔑 Password recovery with secure reset token
-- 🧮 PostgreSQL integration via ORM (TypeORM )
-- ✅ Input validation middleware
-- 📨 Email service for password recovery
-- 🔧 Configurable `.env` support
-- 📁 Scalable folder structure (Controllers, Services, Repositories, Routes)
-- 🌐 Ready-to-use RESTful APIs
 
 
-## Use Cases
-This template is ideal for kickstarting:
+## 🖥 Installation & Setup  
 
-1.SaaS platforms
-2.Admin dashboards
-3.E-commerce backends
-4.Any Node.js backend with user management needs
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
+### 1. Clone the repo:  
 ```bash
-git clone https://github.com/your-username/node-auth-template.git
-cd node-auth-template
-
-### 2. Install dependencies
-npm install
-
-### 3. Create a .env file
- use the .env.example file as template
-
-### 4. run the migration
-npx typeorm migration:generate src/migration/init --dataSource src/api/connection.ts
-npx typeorm migration:run --dataSource src/api/connection.ts
-
-### 5. run the server
-npm run dev
-github:https://github.com/Elvinkess
-
-
-
+git clone https://github.com/Elvinkess/Chat-App-Backend.git
+cd Chat-App-Backend
